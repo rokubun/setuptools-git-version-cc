@@ -2,6 +2,14 @@ from pkg_resources import get_distribution
 import subprocess
 
 
+def get_git_version_cc(dist, attr, value):
+    try:
+        version = get_git_version()
+    except:
+        version = get_distribution(dist.get_name()).version
+    dist.metadata.version = version
+
+
 def get_git_version():
     """
     Computes the version of a git repository (in current path)

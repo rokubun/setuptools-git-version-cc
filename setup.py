@@ -21,6 +21,8 @@ setup(
         'setuptools >= 8.0',
     ],
     entry_points="""
+        [distutils.setup_keywords]
+        version_cc = setuptools_git_version_cc:get_git_version_cc
         [console_scripts]
         get_version = setuptools_git_version_cc:get_git_version
     """,
