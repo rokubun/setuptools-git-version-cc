@@ -1,2 +1,9 @@
 /.cache/
 /.tox/
+
+*.swp
+__pycache__/
+build/
+dist/
+setuptools_git_version_cc.egg-info/
+
