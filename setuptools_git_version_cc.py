@@ -32,7 +32,7 @@ def get_git_version():
 
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-    major = 0
+    major = 1
     minor = 0
     patch = 0
     release = 0
