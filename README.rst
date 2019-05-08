@@ -22,20 +22,26 @@ this package allows to extract it from the underlying Git repository:
 
     setup(
         name='foobar',
-        version_format='{tag}.dev{commitcount}+{gitsha}',
-        setup_requires=['setuptools-git-version'],
+        version_format='{version}',
+        setup_requires=['setuptools-git-version-cc'],
         ...)
-
-Please ensure that your git repository has at least one `annotated tag <https://git-scm.com/book/en/v2/Git-Basics-Tagging>`_,
-as ``setuptools-git-version`` will uses tags to determine your current git version. 
 
 Fields
 ------
-``setuptools-git-version`` provides three fields as options for the ``version_format`` string:
+``setuptools-git-version-cc`` provides a ``version`` number with this format:
 
-* ``tag``: The latest tag (probably a release version like ``v1.0.3``) in your repository
-* ``commitcount``: The number of additional commits on top of this tag (e.g. ``13``)
-* ``gitsha``: An abbreviated commit hash of the latest commit in your repository
+..
+    <major>.<minor>.<patch>-r<release>
+
+where each component is computed using the Conventional Commits (CC). It is important 
+to follow the structure of the commit message specified in the standard 
+(see https://www.conventionalcommits.org/en/v1.0.0-beta.2/). The following fields
+of the version are computed as follows
+
+* ``major``: Incresed when the type of the commit is ``breaking`` (not ``refactor`` as stated in the CC standard). This implies a breaking change in e.g. the interfaces.
+* ``minor``: Incresed when the type of the commit is ``feat`` (new feature added to the code)
+* ``patch``: Incresed when the type of the commit is ``fix`` (i.e. bugfix)
+* ``release``: Increased when a type affects non production code (``chore``, ``ci``, ``test``...)
 
 Implementation Details
 ----------------------
@@ -44,40 +50,8 @@ Implementation Details
 
 .. code-block:: bash
 
-    git describe --tags --long --dirty
+    git log --reverse --pretty=oneline
 
-To ensure that ``setuptools-git-version`` is compatible with your project, please ensure this command runs correctly in
-your repository
-
-
-Changes
--------
-
-1.0.4 - 2016-06-22
-++++++++++++++++++
-
-- [feature] allow to build a package using a git-based version without modifying it upfront
-
-1.0.3 - 2015-04-23
-++++++++++++++++++
-
-- [bugfix] rename module to avoid import conflicts
-
-
-1.0.2 - 2015-04-14
-++++++++++++++++++
-
-- [bugfix] make it work with Python 3(.4)
-
-
-1.0.1 - 2015-04-14
-++++++++++++++++++
-
-- brownbag release
-
-
-1.0 - 2015-04-10
-++++++++++++++++
-
-- initial public release
+The script will parse all the messages and compute the version according to the
+rules specified above
 

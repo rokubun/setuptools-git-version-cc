@@ -2,12 +2,12 @@ from setuptools import setup
 
 
 setup(
-    name='setuptools-git-version',
-    version='1.0.4',
-    url='https://github.com/pyfidelity/setuptools-git-version',
-    author='pyfidelity UG',
-    author_email='mail@pyfidelity.com',
-    description='Automatically set package version from Git.',
+    name='setuptools-git-version-cc',
+    version='1.0.0',
+    url='https://github.com/rokubun/setuptools-git-version-cc',
+    author='Rokubun',
+    author_email='info@rokubun.cat',
+    description='Automatically set package version from Git using Conventional Commit standard.',
     license='http://opensource.org/licenses/MIT',
     classifiers=[
         'Framework :: Setuptools Plugin',
@@ -15,14 +15,12 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
     ],
-    py_modules=['setuptools_git_version'],
+    py_modules=['setuptools_git_version_cc'],
     install_requires=[
         'setuptools >= 8.0',
     ],
     entry_points="""
-        [distutils.setup_keywords]
-        version_format = setuptools_git_version:validate_version_format
         [console_scripts]
-        setuptools-git-version = setuptools_git_version:get_git_version
+        get_version = setuptools_git_version_cc:get_git_version
     """,
 )
