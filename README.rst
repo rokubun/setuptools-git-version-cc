@@ -38,7 +38,7 @@ to follow the structure of the commit message specified in the standard
 (see https://www.conventionalcommits.org/en/v1.0.0-beta.2/). The following fields
 of the version are computed as follows
 
-* ``major``: Incresed when the type of the commit is ``breaking`` (not ``refactor`` as stated in the CC standard). This implies a breaking change in e.g. the interfaces.
+* ``major``: Incresed when the type of the commit is ``breaking`` (not ``BREAKING CHANGE`` as stated in the CC standard). This implies a breaking change in e.g. the interfaces.
 * ``minor``: Incresed when the type of the commit is ``feat`` (new feature added to the code)
 * ``patch``: Incresed when the type of the commit is ``fix`` (i.e. bugfix)
 * ``release``: Increased when a type affects non production code (``chore``, ``ci``, ``test``...)
