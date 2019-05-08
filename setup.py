@@ -9,6 +9,7 @@ setup(
     author_email='info@rokubun.cat',
     description='Automatically set package version from Git using Conventional Commit standard.',
     license='http://opensource.org/licenses/MIT',
+    url="https://github.com/rokubun/setuptools-git-version-cc",
     classifiers=[
         'Framework :: Setuptools Plugin',
         'Intended Audience :: Developers',
