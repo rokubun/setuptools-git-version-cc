@@ -2,9 +2,9 @@ from pkg_resources import get_distribution
 import subprocess
 
 
-def get_git_version(path='.'):
+def get_git_version():
     """
-    Computes the version of a given git repository
+    Computes the version of a git repository (in current path)
     
     The version is computed assuming that the commit messages are formatted according 
     to SemVer and Conventional Commits. The version format is the following:
@@ -17,11 +17,10 @@ def get_git_version(path='.'):
     - 'fix:' types increase patch version
     - any other type that conforms to '<type>:' (where <type> can be chore, ci, test, ...)
     
-    :param path: directory of the git repository (defaults to path)
     :return: The version number as a string
     """
     
-    cmd = ['git', 'log', '--reverse','--pretty=oneline', path]
+    cmd = ['git', 'log', '--reverse','--pretty=oneline']
 
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -36,21 +35,20 @@ def get_git_version(path='.'):
 
             s = f[1].decode('utf-8')
 
-
-            if s == 'breaking:':
+            if 'breaking:' in s:
                 major += 1
                 minor = 0
                 patch = 0
                 release = 0
                 continue
 
-            if s == 'feat:':
+            if 'feat:' in s:
                 minor += 1
                 patch = 0
                 release = 0
                 continue
 
-            if s == 'fix:':
+            if 'fix:' in s:
                 patch += 1
                 release = 0
                 continue
