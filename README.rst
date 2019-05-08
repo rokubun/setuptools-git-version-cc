@@ -22,7 +22,7 @@ this package allows to extract it from the underlying Git repository:
 
     setup(
         name='foobar',
-        version_format='{version}',
+        version_cc='{version}',
         setup_requires=['setuptools-git-version-cc'],
         ...)
 
