@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='setuptools-git-version-cc',
-    version='2.0.0',
+    version='2.0.1',
     author='Rokubun',
     author_email='info@rokubun.cat',
     description='Automatically set package version from Git using Conventional Commit standard.',
@@ -23,6 +23,6 @@ setup(
         [distutils.setup_keywords]
         version_cc = setuptools_git_version_cc:get_git_version_cc
         [console_scripts]
-        get_version = setuptools_git_version_cc:get_git_version
+        get_version = setuptools_git_version_cc:entry_point
     """,
 )
